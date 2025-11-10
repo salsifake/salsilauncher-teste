@@ -107,7 +107,7 @@ def carregar_colecoes() -> List[Colecao]:
         return []
 
 
-# --- ENDPOINTS DA API ---
+#  ENDPOINTS DA API
 
 @app.get("/jogos", response_model=List[Jogo])
 def listar_jogos(q: Optional[str] = None, tags: Optional[str] = None):
@@ -118,14 +118,14 @@ def listar_jogos(q: Optional[str] = None, tags: Optional[str] = None):
     """
     jogos = carregar_jogos()
 
-    # 1. Filtragem por Tags
+    # Filtragem por Tags
     if tags:
         tags_requisitadas = set(tags.lower().split(','))
         jogos = [
             jogo for jogo in jogos if tags_requisitadas.issubset(set(t.lower() for t in jogo.tags))
         ]
 
-    # 2. Busca por Texto com Pontuação
+    # Busca por Texto com Pontuação
     if q:
         resultados_com_pontuacao = []
         termo_busca = q.lower()
